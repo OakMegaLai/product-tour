@@ -1,6 +1,11 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
+import Intercom from '@intercom/messenger-js-sdk'
+
+Intercom({
+  app_id: 'jw7ka7xv'
+})
 </script>
 
 <template>
