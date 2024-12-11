@@ -1,20 +1,50 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
-import Intercom from '@intercom/messenger-js-sdk'
+import { onMounted, ref } from 'vue'
 
-Intercom({
-  app_id: 'jw7ka7xv'
+const imageUrl = ref('')
+
+onMounted(() => {
+  setMeta()
+  fakeToFetchSomeData()
 })
+
+function setMeta() {
+  document.title = 'Vue 3 Vite'
+  const metaTags = [
+    { name: 'description', content: '這是一個示範網站，提供豐富的資訊。' },
+    { name: 'keywords', content: '示範, 網站, 資訊' },
+    { name: 'author', content: '你的名字或公司名稱' },
+    { property: 'og:title', content: '示範網站標題' },
+    { property: 'og:description', content: '這是一個用於展示的示範網站。' },
+    { property: 'og:image', content: 'https://example.com/image.jpg' },
+    { property: 'og:url', content: 'https://example.com' }
+  ]
+
+  metaTags.forEach((tag) => {
+    const metaElement = document.createElement('meta')
+    Object.keys(tag).forEach((key) => {
+      metaElement.setAttribute(key, tag[key])
+    })
+    document.head.appendChild(metaElement)
+  })
+}
+
+function fakeToFetchSomeData() {
+  setTimeout(() => {
+    imageUrl.value =
+      'https://e8a87cd35421b61893e89341d469998aed92254a.mdnplay.dev/en-US/docs/Web/SVG/Element/image/mdn_logo_only_color.png'
+  }, 5000)
+}
 </script>
 
 <template>
   <header>
     <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
+    <img v-if="imageUrl" alt="Vue logo" class="logo" :src="imageUrl" width="125" height="125" />
 
     <div class="wrapper">
       <HelloWorld msg="You did it!!!" />
-
       <nav>
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/about">About</RouterLink>
