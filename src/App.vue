@@ -10,24 +10,17 @@ onMounted(() => {
 })
 
 function setMeta() {
-  document.title = 'Vue 3 Vite'
-  const metaTags = [
-    { name: 'description', content: '這是一個示範網站，提供豐富的資訊。' },
-    { name: 'keywords', content: '示範, 網站, 資訊' },
-    { name: 'author', content: '你的名字或公司名稱' },
-    { property: 'og:title', content: '示範網站標題' },
-    { property: 'og:description', content: '這是一個用於展示的示範網站。' },
-    { property: 'og:image', content: 'https://example.com/image.jpg' },
-    { property: 'og:url', content: 'https://example.com' }
-  ]
+  document.title = 'SEO META TEST'
 
-  metaTags.forEach((tag) => {
-    const metaElement = document.createElement('meta')
-    Object.keys(tag).forEach((key) => {
-      metaElement.setAttribute(key, tag[key])
-    })
-    document.head.appendChild(metaElement)
-  })
+  const nameMetaElement = document.createElement('meta')
+  nameMetaElement.setAttribute('name', 'description')
+  nameMetaElement.setAttribute('content', '這是一個示範網站，提供豐富的資訊。')
+  document.head.appendChild(nameMetaElement)
+
+  const keywordsMetaElement = document.createElement('meta')
+  keywordsMetaElement.setAttribute('name', 'keywords')
+  keywordsMetaElement.setAttribute('content', '示範, 網站, 資訊')
+  document.head.appendChild(keywordsMetaElement)
 }
 
 function fakeToFetchSomeData() {
